@@ -26,8 +26,7 @@ Se desea construir una base de datos que almacene la carta de un restaurante. Pa
 ---
 
 ## 2. Diagrama Entidad - Relación (DER)
-Representación visual del modelo mediante rectángulos (tablas), elipses (atributos) y rombos (relaciones). Este paso permite entender la estructura antes de pasar a las tablas.
-
+![texto alternativo](entidad.PNG)
 
 
 ---
@@ -38,9 +37,32 @@ Para convertir el diagrama en tablas reales, aplicamos las siguientes reglas de 
 
 ### Relación N:M (Muchos a Muchos) → Creación de una nueva tabla
 
+Para gestionar la relación entre los platos y sus ingredientes (recetas), se utiliza la tabla intermedia **SE_REALIZA**.
 
+**SE_REALIZA** (Nombre_plato, Nombre_ingrediente, cantidad)
+
+* **CP:** Nombre_plato, Nombre_ingrediente
+* **CAj:** Nombre_plato → **PLATO** (Nombre)
+* **CAj:** Nombre_ingrediente → **INGREDIENTE** (Nombre)
 
 ### Relación 1:N (Uno a Muchos) → Se incluye en la cardinalidad N
+
+**PLATO** (Nombre, Descripción, Dificultad, Foto, Precio final)
+* **CP:** Nombre
+
+**CATEGORIA** (Nombre, Descripción, Encargado)
+* **CP:** Nombre
+ 
+**INGREDIENTE** (Nombre, Unidad Medida, Cantidad Almacen)
+* **CP:** Nombre
+  
+### →
+
+**PLATO** (Nombre, Descripción, Dificultad, Foto, Precio final, Nombre_categoria)
+* **CP:** Nombre
+* **CAj:** Nombre_categoria → CATEGORIA(Nombre)
+
+
 
 
 ---
